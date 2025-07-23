@@ -1,5 +1,10 @@
 spring:
   application:
+    # Nombre de la aplicación para que se registre en Eureka y otros contextos
     name: msvc-eureka
+
   config:
+    # Indica que la configuración debe importar (cargar) propiedades desde un servidor de configuración externo
+    # La palabra "optional:" indica que si el servidor no está disponible, no falle la aplicación
+    # Se conecta al servidor de configuración ubicado en http://localhost:8888
     import: optional:configserver:http://localhost:8888

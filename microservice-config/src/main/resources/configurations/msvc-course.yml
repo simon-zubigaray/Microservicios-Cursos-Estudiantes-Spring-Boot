@@ -1,23 +1,40 @@
+# Configuración del servidor embebido de Spring Boot
 server:
+  # Puerto en el que se levantará la aplicación
   port: 9090
 
 spring:
+  # Nombre de la aplicación que se registra en Eureka
   application:
     name: msvc-course
+
+  # Configuración de la base de datos
   datasource:
+    # Clase del driver JDBC para PostgreSQL
     driver-class-name: org.postgresql.Driver
+    # URL de conexión a la base de datos PostgreSQL local
     url: jdbc:postgresql://localhost:5432/coursesDb
+    # Usuario para acceder a la base de datos
     username: postgres
+    # Contraseña del usuario
     password: 123456
+
+  # Configuración de JPA (Hibernate)
   jpa:
     hibernate:
+      # Estrategia de generación del esquema: "create" elimina y crea las tablas cada vez
       ddl-auto: create
+    # Tipo de base de datos
     database: postgresql
+    # Dialecto específico para PostgreSQL
     database-platform: org.hibernate.dialect.PostgreSQLDialect
 
+# Configuración del cliente Eureka (descubrimiento de servicios)
 eureka:
   instance:
+    # Hostname con el que se registrará el microservicio en Eureka
     hostname: localhost
   client:
     service-url:
+      # Dirección del servidor Eureka donde se registrará el microservicio
       defaultZone: http://localhost:8761/eureka

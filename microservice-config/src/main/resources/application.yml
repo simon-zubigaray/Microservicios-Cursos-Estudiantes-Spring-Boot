@@ -1,13 +1,20 @@
+# Configuración del servidor embebido de Spring Boot
 server:
+  # Puerto en el que se levanta el servidor de configuración
   port: 8888
 
 spring:
   profiles:
+    # Perfil activo de Spring para usar configuración local (native)
     active: native
+
+  # Nombre de la aplicación (servidor de configuración)
   application:
     name: config-server
+
   cloud:
     config:
       server:
         native:
+          # Ruta local donde buscar los archivos de configuración
           search-locations: classpath:/configurations

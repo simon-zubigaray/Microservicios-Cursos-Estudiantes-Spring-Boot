@@ -1,15 +1,23 @@
+# Configuración del servidor embebido de Spring Boot
 server:
+  # Puerto en el que se levantará la aplicación Eureka Server
   port: 8761
 
 spring:
+  # Nombre de la aplicación que se registra en Eureka (servidor)
   application:
     name: msvc-eureka
 
+# Configuración de Eureka
 eureka:
   instance:
+    # Hostname con el que se identifica esta instancia Eureka
     hostname: localhost
   client:
+    # Indica que esta instancia NO se registrará a sí misma en Eureka (porque es el servidor)
     register-with-eureka: false
+    # Indica que esta instancia NO obtendrá registros de otros servicios (porque es el servidor)
     fetch-registry: false
     service-url:
+      # URL base donde corre el servidor Eureka (usando el puerto configurado arriba)
       defaultZone: http://localhost:${server.port}/eureka

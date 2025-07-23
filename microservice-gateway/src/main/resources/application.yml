@@ -1,5 +1,9 @@
 spring:
   application:
+    # Nombre de la aplicación gateway que se usará para identificarla
     name: msvc-gateway
+
   config:
+    # Importa configuración desde un servidor externo de configuración
+    # La palabra "optional:" indica que si el servidor no está disponible, la aplicación no fallará
     import: optional:configserver:http://localhost:8888

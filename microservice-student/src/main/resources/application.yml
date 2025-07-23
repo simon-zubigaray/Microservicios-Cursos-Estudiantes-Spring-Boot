@@ -1,5 +1,7 @@
 spring:
   application:
-    name: msvc-student
+    name: msvc-student       # Nombre del microservicio, usado para registrarse en Eureka y para configuración remota.
   config:
+    # Indica que debe importar la configuración desde un Config Server alojado en http://localhost:8888.
+    # "optional:" significa que si el Config Server no está disponible, la app sigue funcionando con su configuración local.
     import: optional:configserver:http://localhost:8888

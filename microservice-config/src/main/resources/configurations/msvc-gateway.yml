@@ -1,26 +1,39 @@
+# Configuración de Eureka para el cliente
 eureka:
   client:
+    # Indica que este servicio no se registrará en Eureka
     register-with-eureka: false
 
+# Configuración del servidor embebido de Spring Boot
 server:
+  # Puerto en el que se levantará la aplicación Gateway
   port: 8080
 
 spring:
+  # Nombre de la aplicación para el Gateway
   application:
     name: msvc-gateway
+
   cloud:
     gateway:
       server:
         webflux:
           discovery:
             locator:
+              # Habilita el descubrimiento automático de servicios registrados en Eureka para enrutar peticiones
               enabled: true
           routes:
+            # Definición de rutas del Gateway
             - id: students
+              # URI del servicio destino, usando load balancer para msvc-student
               uri: lb://msvc-student
               predicates:
+                # Predicado para enrutar las peticiones que comienzan con /api/student/
                 - Path=/api/student/**
+
             - id: courses
+              # URI del servicio destino, usando load balancer para msvc-course
               uri: lb://msvc-course
               predicates:
+                # Predicado para enrutar las peticiones que comienzan con /api/course/
                 - Path=/api/course/**

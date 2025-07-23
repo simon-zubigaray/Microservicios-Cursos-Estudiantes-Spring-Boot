@@ -1,23 +1,40 @@
+# Configuración del servidor embebido de Spring Boot
 server:
+  # Puerto en el que se levantará la aplicación
   port: 8090
 
 spring:
+  # Nombre de la aplicación que se registra en Eureka
   application:
     name: msvc-student
+
+  # Configuración de la base de datos
   datasource:
+    # Clase del driver JDBC para MySQL
     driver-class-name: com.mysql.cj.jdbc.Driver
+    # URL de conexión a la base de datos MySQL local
     url: jdbc:mysql://localhost:3306/studentsDb
+    # Usuario para acceder a la base de datos
     username: root
+    # Contraseña del usuario (vacía en este caso)
     password:
+
+  # Configuración de JPA (Hibernate)
   jpa:
     hibernate:
+      # Estrategia de generación del esquema: "create" elimina y crea las tablas cada vez
       ddl-auto: create
+    # Tipo de base de datos
     database: mysql
+    # Dialecto específico para MySQL 8
     database-platform: org.hibernate.dialect.MySQL8Dialect
 
+# Configuración del cliente Eureka (descubrimiento de servicios)
 eureka:
   instance:
+    # Hostname con el que se registrará el microservicio en Eureka
     hostname: localhost
   client:
     service-url:
+      # Dirección del servidor Eureka donde se registrará el microservicio
       defaultZone: http://localhost:8761/eureka
