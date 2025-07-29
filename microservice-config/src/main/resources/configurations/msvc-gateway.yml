@@ -13,6 +13,16 @@ spring:
   # Nombre de la aplicación para el Gateway
   application:
     name: msvc-gateway
+  datasource:
+    url: jdbc:mysql://localhost:3306/users
+    username: root
+    password:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
 
   cloud:
     gateway:
@@ -37,3 +47,7 @@ spring:
               predicates:
                 # Predicado para enrutar las peticiones que comienzan con /api/course/
                 - Path=/api/course/**
+jwt:
+  secret: "${JWT_SECRET:z0Rd+aoeRI1ZKDbiWfhHQ2FGyOMwXOVUlBzWcyVrWbE/PJmMYIYvu4B4p5bmlaPl}"
+  user:
+    generator: "AUTH0JWT-BACKEND"
